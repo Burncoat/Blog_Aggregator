@@ -20,11 +20,11 @@ func handlerFollow(s *state, cmd command, user database.User) error {
 	}
 
 	ffRow, err := s.db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{
-		ID: uuid.New(),
-		CreatedAt: time.Now().UTC(),
-		UpdatedAt: time.Now().UTC(),
-		UserID: user.ID,
-		FeedID: feed.ID,
+		ID: 		uuid.New(),
+		CreatedAt: 	time.Now().UTC(),
+		UpdatedAt: 	time.Now().UTC(),
+		UserID: 	user.ID,
+		FeedID: 	feed.ID,
 	})
 	if err != nil {
 		return fmt.Errorf("couldn't create feed follow: %v", err)

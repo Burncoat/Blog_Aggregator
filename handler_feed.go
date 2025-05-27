@@ -30,11 +30,11 @@ func handlerAddFeed(s *state, cmd command, user database.User) error {
 	}
 
 	feedFollow, err := s.db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{
-		ID: uuid.New(),
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
-		UserID: user.ID,
-		FeedID: feed.ID,
+		ID: 		uuid.New(),
+		CreatedAt: 	time.Now().UTC(),
+		UpdatedAt: 	time.Now().UTC(),
+		UserID: 	user.ID,
+		FeedID: 	feed.ID,
 	})
 	if err != nil {
 		return fmt.Errorf("couldn't create feed follow: %v", err)
@@ -51,12 +51,13 @@ func handlerAddFeed(s *state, cmd command, user database.User) error {
 }
 
 func printFeed(feed database.Feed, user database.User) {
-	fmt.Printf("* ID:			%v\n", feed.ID)
-	fmt.Printf("* Created:		%v\n", feed.CreatedAt)
-	fmt.Printf("* Updated:		%v\n", feed.UpdatedAt)
-	fmt.Printf("* Name:			%v\n", feed.Name)
-	fmt.Printf("* URL:			%v\n", feed.Url)
-	fmt.Printf("* User:			%v\n", user.Name)
+	fmt.Printf("* ID:			 %v\n", feed.ID)
+	fmt.Printf("* Created:		 %v\n", feed.CreatedAt)
+	fmt.Printf("* Updated:		 %v\n", feed.UpdatedAt)
+	fmt.Printf("* Name:			 %v\n", feed.Name)
+	fmt.Printf("* URL:			 %v\n", feed.Url)
+	fmt.Printf("* User:			 %v\n", user.Name)
+	fmt.Printf("* LastFetchedAt: %v\n", feed.LastFetchedAt.Time)
 }
 
 func handlerListFeeds(s *state, cmd command) error {
